@@ -1,0 +1,77 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "JavaScript 비동기 프로그래밍 완벽 가이드",
+      "excerpt": "Promise, async/await를 활용한 비동기 처리 방법을 알아봅니다. 콜백 지옥을 벗어나는 현대적인 방법을 소개합니다.",
+      "content": "<p>JavaScript에서 비동기 프로그래밍은 매우 중요한 개념입니다. 웹 개발에서 API 호출, 파일 읽기, 타이머 등 다양한 작업이 비동기로 처리됩니다.</p><h2>1. 콜백 함수</h2><p>가장 기본적인 비동기 처리 방법입니다. 하지만 중첩이 깊어지면 '콜백 지옥'이 발생할 수 있습니다.</p><pre><code>setTimeout(() => {\n  console.log('1초 후 실행');\n}, 1000);</code></pre><h2>2. Promise</h2><p>ES6에서 도입된 Promise는 비동기 작업의 완료 또는 실패를 나타내는 객체입니다.</p><pre><code>const promise = new Promise((resolve, reject) => {\n  // 비동기 작업\n  resolve('성공');\n});</code></pre><h2>3. async/await</h2><p>ES2017에서 도입된 async/await는 Promise를 더 직관적으로 사용할 수 있게 해줍니다.</p><pre><code>async function fetchData() {\n  const response = await fetch('/api/data');\n  const data = await response.json();\n  return data;\n}</code></pre>",
+      "category": "JavaScript",
+      "tags": ["JavaScript", "비동기", "Promise", "async/await"],
+      "date": "2024-01-15",
+      "author": "홍길동",
+      "thumbnail": "assets/images/js-async.jpg",
+      "readTime": "8분"
+    },
+    {
+      "id": 2,
+      "title": "TailwindCSS로 빠르게 UI 만들기",
+      "excerpt": "유틸리티 우선 CSS 프레임워크 TailwindCSS의 기본 사용법과 장점을 알아봅니다.",
+      "content": "<p>TailwindCSS는 유틸리티 우선(Utility-First) CSS 프레임워크입니다. 미리 정의된 클래스를 조합하여 빠르게 UI를 구축할 수 있습니다.</p><h2>장점</h2><ul><li>빠른 개발 속도</li><li>일관된 디자인 시스템</li><li>반응형 디자인 쉽게 구현</li><li>다크모드 지원</li></ul><h2>기본 사용법</h2><pre><code>&lt;button class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\"&gt;\n  버튼\n&lt;/button&gt;</code></pre><h2>반응형 디자인</h2><p>브레이크포인트 접두사를 사용하여 반응형 디자인을 쉽게 구현할 수 있습니다.</p><pre><code>&lt;div class=\"w-full md:w-1/2 lg:w-1/3\"&gt;\n  반응형 그리드\n&lt;/div&gt;</code></pre>",
+      "category": "CSS",
+      "tags": ["TailwindCSS", "CSS", "UI/UX", "프론트엔드"],
+      "date": "2024-01-10",
+      "author": "홍길동",
+      "thumbnail": "assets/images/tailwind.jpg",
+      "readTime": "5분"
+    },
+    {
+      "id": 3,
+      "title": "React 컴포넌트 설계 패턴",
+      "excerpt": "재사용 가능하고 유지보수하기 쉬운 React 컴포넌트를 설계하는 방법을 알아봅니다.",
+      "content": "<p>좋은 React 컴포넌트는 재사용 가능하고, 테스트하기 쉽고, 유지보수가 용이해야 합니다.</p><h2>1. 단일 책임 원칙</h2><p>하나의 컴포넌트는 하나의 역할만 담당해야 합니다.</p><h2>2. 컨테이너/프레젠테이션 패턴</h2><p>로직과 UI를 분리하여 관리합니다.</p><pre><code>// 프레젠테이션 컴포넌트\nfunction UserCard({ name, email }) {\n  return (\n    &lt;div&gt;\n      &lt;h2&gt;{name}&lt;/h2&gt;\n      &lt;p&gt;{email}&lt;/p&gt;\n    &lt;/div&gt;\n  );\n}</code></pre><h2>3. 커스텀 훅</h2><p>반복되는 로직은 커스텀 훅으로 추출합니다.</p><pre><code>function useLocalStorage(key, initialValue) {\n  const [value, setValue] = useState(() => {\n    const item = localStorage.getItem(key);\n    return item ? JSON.parse(item) : initialValue;\n  });\n  return [value, setValue];\n}</code></pre>",
+      "category": "React",
+      "tags": ["React", "컴포넌트", "디자인패턴", "프론트엔드"],
+      "date": "2024-01-05",
+      "author": "홍길동",
+      "thumbnail": "assets/images/react.jpg",
+      "readTime": "10분"
+    },
+    {
+      "id": 4,
+      "title": "Git 브랜치 전략: Git Flow vs GitHub Flow",
+      "excerpt": "효과적인 팀 협업을 위한 Git 브랜치 전략을 비교하고 프로젝트에 맞는 전략을 선택하는 방법을 알아봅니다.",
+      "content": "<p>Git 브랜치 전략은 팀 협업의 효율성을 크게 좌우합니다. 프로젝트 규모와 팀 상황에 맞는 전략을 선택하는 것이 중요합니다.</p><h2>Git Flow</h2><p>Vincent Driessen이 제안한 브랜치 모델로, 복잡한 릴리즈 주기를 가진 프로젝트에 적합합니다.</p><ul><li><strong>main</strong>: 프로덕션 브랜치</li><li><strong>develop</strong>: 개발 브랜치</li><li><strong>feature/*</strong>: 기능 개발</li><li><strong>release/*</strong>: 릴리즈 준비</li><li><strong>hotfix/*</strong>: 긴급 버그 수정</li></ul><h2>GitHub Flow</h2><p>더 단순한 브랜치 전략으로, 지속적 배포 환경에 적합합니다.</p><ul><li><strong>main</strong>: 항상 배포 가능한 상태</li><li><strong>feature branch</strong>: 모든 변경사항</li></ul><h2>어떤 것을 선택할까?</h2><p>소규모 팀이나 빠른 릴리즈가 필요한 경우 GitHub Flow를, 복잡한 릴리즈 관리가 필요한 경우 Git Flow를 추천합니다.</p>",
+      "category": "개발도구",
+      "tags": ["Git", "협업", "브랜치", "버전관리"],
+      "date": "2024-01-01",
+      "author": "홍길동",
+      "thumbnail": "assets/images/git.jpg",
+      "readTime": "7분"
+    },
+    {
+      "id": 5,
+      "title": "웹 성능 최적화 실전 가이드",
+      "excerpt": "Core Web Vitals 개선과 함께 실제 프로젝트에서 적용할 수 있는 웹 성능 최적화 기법을 소개합니다.",
+      "content": "<p>웹 성능은 사용자 경험과 SEO에 직접적인 영향을 미칩니다. Google의 Core Web Vitals를 기준으로 최적화 방법을 알아봅니다.</p><h2>Core Web Vitals</h2><ul><li><strong>LCP (Largest Contentful Paint)</strong>: 가장 큰 콘텐츠 렌더링 시간</li><li><strong>FID (First Input Delay)</strong>: 첫 입력 지연 시간</li><li><strong>CLS (Cumulative Layout Shift)</strong>: 레이아웃 이동 점수</li></ul><h2>이미지 최적화</h2><pre><code>&lt;img \n  src=\"image.webp\"\n  loading=\"lazy\"\n  width=\"800\"\n  height=\"600\"\n  alt=\"설명\"\n/&gt;</code></pre><h2>코드 분할</h2><p>필요한 코드만 로드하여 초기 로딩 시간을 줄입니다.</p><pre><code>const Component = React.lazy(() => import('./Component'));</code></pre><h2>캐싱 전략</h2><p>적절한 캐시 헤더 설정으로 재방문 시 로딩 속도를 개선합니다.</p>",
+      "category": "성능",
+      "tags": ["성능최적화", "Core Web Vitals", "SEO", "웹개발"],
+      "date": "2023-12-28",
+      "author": "홍길동",
+      "thumbnail": "assets/images/performance.jpg",
+      "readTime": "12분"
+    },
+    {
+      "id": 6,
+      "title": "TypeScript 제네릭 완벽 정복",
+      "excerpt": "TypeScript의 강력한 기능인 제네릭을 활용하여 재사용 가능하고 타입 안전한 코드를 작성하는 방법을 알아봅니다.",
+      "content": "<p>제네릭은 TypeScript의 가장 강력한 기능 중 하나입니다. 타입을 매개변수처럼 사용하여 재사용 가능한 컴포넌트를 만들 수 있습니다.</p><h2>기본 제네릭</h2><pre><code>function identity&lt;T&gt;(arg: T): T {\n  return arg;\n}\n\nconst result = identity&lt;string&gt;('hello');</code></pre><h2>제네릭 인터페이스</h2><pre><code>interface ApiResponse&lt;T&gt; {\n  data: T;\n  status: number;\n  message: string;\n}\n\nconst userResponse: ApiResponse&lt;User&gt; = {\n  data: { id: 1, name: '홍길동' },\n  status: 200,\n  message: 'success'\n};</code></pre><h2>제네릭 제약조건</h2><pre><code>interface Lengthwise {\n  length: number;\n}\n\nfunction logLength&lt;T extends Lengthwise&gt;(arg: T): T {\n  console.log(arg.length);\n  return arg;\n}</code></pre>",
+      "category": "TypeScript",
+      "tags": ["TypeScript", "제네릭", "타입시스템", "프론트엔드"],
+      "date": "2023-12-20",
+      "author": "홍길동",
+      "thumbnail": "assets/images/typescript.jpg",
+      "readTime": "9분"
+    }
+  ],
+  "categories": ["JavaScript", "CSS", "React", "개발도구", "성능", "TypeScript"]
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카운터 앱</title>
+
+    <!-- Tailwind CSS CDN: 예쁜 디자인을 쉽게 만들어주는 CSS 라이브러리 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Pretendard 폰트: 한글이 예쁘게 보이는 폰트 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
+    <style>
+        /* 폰트를 전체 페이지에 적용 */
+        body {
+            font-family: 'Pretendard', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <!-- 메인 카드: 카운터가 들어있는 하얀 박스 -->
+    <div class="bg-white rounded-2xl shadow-2xl p-10 w-96">
+
+        <!-- 제목 -->
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">
+            ⚡ 카운터 앱
+        </h1>
+
+        <!-- 카운트 숫자를 보여주는 영역 -->
+        <div class="bg-blue-50 rounded-xl p-8 mb-8">
+            <p class="text-sm text-gray-600 text-center mb-2">현재 숫자</p>
+            <!-- id="counter"로 JavaScript에서 이 숫자를 찾을 수 있어요 -->
+            <p id="counter" class="text-6xl font-bold text-blue-600 text-center">0</p>
+        </div>
+
+        <!-- 버튼들이 들어있는 영역 -->
+        <div class="space-y-3">
+
+            <!-- 증가 버튼: 클릭하면 숫자가 1씩 올라가요 -->
+            <button
+                id="increaseBtn"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-lg transition duration-200 transform hover:scale-105 active:scale-95">
+                ➕ 증가 (+1)
+            </button>
+
+            <!-- 감소 버튼: 클릭하면 숫자가 1씩 내려가요 -->
+            <button
+                id="decreaseBtn"
+                class="w-full bg-blue-400 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-lg transition duration-200 transform hover:scale-105 active:scale-95">
+                ➖ 감소 (-1)
+            </button>
+
+            <!-- 리셋 버튼: 클릭하면 숫자가 0으로 돌아가요 -->
+            <button
+                id="resetBtn"
+                class="w-full bg-blue-300 hover:bg-blue-400 text-white font-bold py-4 px-6 rounded-lg transition duration-200 transform hover:scale-105 active:scale-95">
+                🔄 리셋 (0으로)
+            </button>
+
+        </div>
+
+        <!-- 작은 설명 문구 -->
+        <p class="text-xs text-gray-500 text-center mt-6">
+            버튼을 클릭해서 숫자를 조작해보세요!
+        </p>
+
+    </div>
+
+    <script>
+        // ============================================
+        // JavaScript 부분: 버튼들이 실제로 동작하게 만드는 코드
+        // ============================================
+
+        // 1단계: HTML 요소들을 찾아서 변수에 저장하기
+        // 마치 "카운터 숫자가 어디 있지?"라고 찾는 것과 같아요
+        const counterDisplay = document.getElementById('counter');  // 숫자를 보여주는 곳
+        const increaseBtn = document.getElementById('increaseBtn'); // 증가 버튼
+        const decreaseBtn = document.getElementById('decreaseBtn'); // 감소 버튼
+        const resetBtn = document.getElementById('resetBtn');       // 리셋 버튼
+
+        // 2단계: 현재 카운트 값을 저장할 변수 만들기
+        // 처음에는 0부터 시작해요
+        let count = 0;
+
+        // 3단계: 함수 만들기 - 화면에 숫자를 업데이트하는 기능
+        // 이 함수를 실행하면 HTML의 숫자가 바뀌어요
+        function updateDisplay() {
+            counterDisplay.textContent = count;
+
+            // 보너스 기능: 숫자가 양수면 파란색, 음수면 빨간색, 0이면 회색
+            if (count > 0) {
+                counterDisplay.className = 'text-6xl font-bold text-blue-600 text-center';
+            } else if (count < 0) {
+                counterDisplay.className = 'text-6xl font-bold text-red-600 text-center';
+            } else {
+                counterDisplay.className = 'text-6xl font-bold text-gray-600 text-center';
+            }
+        }
+
+        // 4단계: 버튼에 이벤트 리스너 연결하기
+        // 마치 "이 버튼이 클릭되면 이걸 실행해!"라고 알려주는 것과 같아요
+
+        // 증가 버튼을 클릭하면 실행되는 코드
+        increaseBtn.addEventListener('click', function() {
+            count = count + 1;  // count를 1 증가시키기 (또는 count++로 쓸 수 있어요)
+            updateDisplay();     // 화면 업데이트
+        });
+
+        // 감소 버튼을 클릭하면 실행되는 코드
+        decreaseBtn.addEventListener('click', function() {
+            count = count - 1;  // count를 1 감소시키기 (또는 count--로 쓸 수 있어요)
+            updateDisplay();     // 화면 업데이트
+        });
+
+        // 리셋 버튼을 클릭하면 실행되는 코드
+        resetBtn.addEventListener('click', function() {
+            count = 0;          // count를 0으로 만들기
+            updateDisplay();     // 화면 업데이트
+        });
+
+        // 첫 실행: 페이지가 로드되면 초기 상태(0)를 화면에 보여주기
+        updateDisplay();
+    </script>
+
+</body>
+</html>
